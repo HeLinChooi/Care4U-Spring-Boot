@@ -16,6 +16,7 @@ spring.jpa.hibernate.ddl-auto = update
 spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.MySQL5Dialect
 ```
 
+[Setup Spring Boot in VSCode](https://code.visualstudio.com/docs/java/java-spring-boot)
 This video is watched to setup project as in first commit.  
 [Spring Boot, MySQL, JPA, Hibernate Restful CRUD API Example | Java Techie](https://www.youtube.com/watch?v=IucFDX3RO9U)
 
