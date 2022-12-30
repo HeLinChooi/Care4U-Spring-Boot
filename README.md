@@ -16,11 +16,14 @@ spring.jpa.hibernate.ddl-auto = update
 spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.MySQL5Dialect
 ```
 
+[Setup Spring Boot in VSCode](https://code.visualstudio.com/docs/java/java-spring-boot)
 This video is watched to setup project as in first commit.  
 [Spring Boot, MySQL, JPA, Hibernate Restful CRUD API Example | Java Techie](https://www.youtube.com/watch?v=IucFDX3RO9U)
 
 ## Reference
 [Should I learn Gradle or Maven for Spring](https://www.reddit.com/r/java/comments/pj5iu0/should_i_learn_gradle_or_maven_for_spring/)
+https://www.baeldung.com/spring-boot-security-autoconfiguration
+
 
 # Official Getting Started Guide
 
