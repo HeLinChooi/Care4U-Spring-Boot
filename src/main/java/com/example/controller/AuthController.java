@@ -22,7 +22,6 @@ public class AuthController {
   // signup
   @PostMapping("/signup")
   public ResponseDto signup(@RequestBody SignUpDto signupDto) {
-    System.out.println("enter sign up route");
     return userService.signUp(signupDto);
   }
 

@@ -1,9 +1,10 @@
 package com.example.exceptions;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 /*
  * Specialization of @Component for classes that declare @ExceptionHandler methods to be shared across multiple @Controller classes.
@@ -12,14 +13,21 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 public class ExceptionControllerAdvice {
 
   @ExceptionHandler(value = CustomException.class)
-  public final ResponseEntity<String> handleCustomException(
+  @ResponseBody
+  @ResponseStatus(HttpStatus.BAD_REQUEST)
+  public final ExceptionResponse handleCustomException(
       CustomException exception) {
-    return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
+    ExceptionResponse response = new ExceptionResponse(exception.getMessage());
+    return response;
   }
 
   @ExceptionHandler(value = AuthenticationFailException.class)
-  public final ResponseEntity<String> handleAuthenticationFailException(
-      AuthenticationFailException exception) {
-    return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
+  @ResponseBody
+  @ResponseStatus(HttpStatus.BAD_REQUEST)
+  public final ExceptionResponse handleAuthenticationFailException(
+    AuthenticationFailException exception) {
+      ExceptionResponse response = new ExceptionResponse(exception.getMessage());
+    return response;
   }
+
 }

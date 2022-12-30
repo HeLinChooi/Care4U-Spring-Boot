@@ -71,7 +71,7 @@ public class UserService {
     // md.update(password.getBytes());
     // byte[] digest = md.digest();
     // String hash = DatatypeConverter
-    //     .printHexBinary(digest).toUpperCase();
+    // .printHexBinary(digest).toUpperCase();
     return hash;
   }
 
@@ -84,14 +84,10 @@ public class UserService {
       throw new AuthenticationFailException("user is not valid");
     }
 
-    // hash the password
-
-    try {
-      if (!user.getPassword().equals(hashPassword(signInDto.getPassword()))) {
-        throw new AuthenticationFailException("wrong password");
-      }
-    } catch (NoSuchAlgorithmException e) {
-      e.printStackTrace();
+    // verify password
+    PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+    if (!passwordEncoder.matches(signInDto.getPassword(), user.getPassword())) {
+      throw new AuthenticationFailException("wrong password");
     }
 
     // compare the password in DB

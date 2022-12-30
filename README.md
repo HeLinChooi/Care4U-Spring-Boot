@@ -22,6 +22,8 @@ This video is watched to setup project as in first commit.
 
 ## Reference
 [Should I learn Gradle or Maven for Spring](https://www.reddit.com/r/java/comments/pj5iu0/should_i_learn_gradle_or_maven_for_spring/)
+https://www.baeldung.com/spring-boot-security-autoconfiguration
+
 
 # Official Getting Started Guide
 

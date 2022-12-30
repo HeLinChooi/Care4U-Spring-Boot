@@ -23,4 +23,7 @@ public class User {
     this.email = email;
     this.password = password;
   }
+  // Hibernate will have issue if do not have default construtor
+  public User() {
+  }
 }
