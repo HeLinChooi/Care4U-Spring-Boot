@@ -29,8 +29,8 @@ public class PatientService {
     return repository.findByEmail(email);
   }
 
-  public Patient getPatientByName(String name) {
-    return repository.findByName(name);
+  public List<Patient> getPatientByName(String name) {
+    return repository.findAllByName(name);
   }
 
   public String deletePatientById(int id) {

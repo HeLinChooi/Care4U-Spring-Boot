@@ -34,13 +34,14 @@ public class PatientController {
     return service.getPatientById(id);
   }
 
+  // ERROR: email should be unique
   @GetMapping("/patient/{email}") // yongming test
   public Patient findPatientByEmail(@PathVariable String email) {
     return service.getPatientByEmail(email);
   }
 
   @GetMapping("/patients/{name}") // yongming test
-  public Patient findPatientByName(@PathVariable String name) {
+  public List<Patient> findPatientByName(@PathVariable String name) {
     return service.getPatientByName(name);
   }
 
