@@ -10,7 +10,9 @@ Gradle or Maven: Maven
 These videos are watched to setup project as in first commit.  
 ### Step 1
 Add `resource` folder in "src\main\", make sure it's having the same hierarchy file level with `java`
+
 ![image](https://user-images.githubusercontent.com/55231366/210317354-41214a50-a08d-4b9b-bbf8-4040626639dd.png)
+
 Add the `application.properties` within the `resource` folder.
 ```
 spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
