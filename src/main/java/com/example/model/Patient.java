@@ -1,5 +1,6 @@
 package com.example.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -21,6 +22,7 @@ public class Patient {
   private int age;
   private boolean gender;
   private String phoneNo;
+  @Column(unique = true)
   private String email;
 
 }
