@@ -35,12 +35,16 @@ public class PatientService {
 
   public String deletePatientById(int id) {
     repository.deleteById(id);
-    return "patient profile removed: " + id;
+    return "Patient profile ID: " + id + " has successful removed.";
   }
 
   public String deletePatientByEmail(String email) {
     repository.deleteByEmail(email);
-    return "patient profile removed: " + email;
+    return "Patient profile of email: '" + email + "' has successful removed.";
+  }
+
+  public boolean isPatientExist(String email) {
+    return repository.findByEmail(email) != null ? true : false;
   }
 
   public Patient updatePatient(Patient patient) {

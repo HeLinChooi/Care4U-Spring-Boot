@@ -22,8 +22,7 @@ public class PatientController {
 
   @PostMapping("/patient")
   public Patient addPatient(@RequestBody Patient patient) {
-    Patient existingPatientWithSameEmail = findPatientByEmail(patient.getEmail());
-    if (existingPatientWithSameEmail != null) {
+    if (service.isPatientExist(patient.getEmail()) == true) {
       throw new CustomException("The email has been used by other account.");
     }
     return service.savePatient(patient);
@@ -35,13 +34,19 @@ public class PatientController {
   }
 
   @GetMapping("/patient-by-id/{id}") // yongming test
-  public Patient findPatientById(@PathVariable int id) {
+  public <Optional> Patient findPatientById(@PathVariable int id) {
+    if (service.getPatientById(id) == null) {
+      throw new CustomException("Cannot find this patient.");
+    }
     return service.getPatientById(id);
   }
 
   // ERROR: email should be unique
   @GetMapping("/patient/{email}") // yongming test
-  public Patient findPatientByEmail(@PathVariable String email) {
+  public <Optional> Patient findPatientByEmail(@PathVariable String email) {
+    if (service.getPatientByEmail(email) == null) {
+      throw new CustomException("Cannot find this patient.");
+    }
     return service.getPatientByEmail(email);
   }
 
@@ -57,11 +62,17 @@ public class PatientController {
 
   @DeleteMapping("/delete-patient-by-id/{id}") // yongming test
   public String deletePatient(@PathVariable int id) {
+    if (findPatientById(id) == null) {
+      throw new CustomException("Delete failed: Cannot find this patient.");
+    }
     return service.deletePatientById(id);
   }
 
   @DeleteMapping("/delete-patient-by-email/{email}") // yongming test
   public String deletePatient(@PathVariable String email) {
+    if (findPatientByEmail(email) == null) {
+      throw new CustomException("Delete failed: Cannot find this patient.");
+    }
     return service.deletePatientByEmail(email);
   }
 
