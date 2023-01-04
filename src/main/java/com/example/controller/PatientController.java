@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.exceptions.CustomException;
 import com.example.model.Patient;
 import com.example.service.PatientService;
 
@@ -21,6 +22,10 @@ public class PatientController {
 
   @PostMapping("/patient")
   public Patient addPatient(@RequestBody Patient patient) {
+    Patient existingPatientWithSameEmail = findPatientByEmail(patient.getEmail());
+    if (existingPatientWithSameEmail != null) {
+      throw new CustomException("The email has been used by other account.");
+    }
     return service.savePatient(patient);
   }
 
@@ -34,13 +39,14 @@ public class PatientController {
     return service.getPatientById(id);
   }
 
+  // ERROR: email should be unique
   @GetMapping("/patient/{email}") // yongming test
   public Patient findPatientByEmail(@PathVariable String email) {
     return service.getPatientByEmail(email);
   }
 
   @GetMapping("/patients/{name}") // yongming test
-  public Patient findPatientByName(@PathVariable String name) {
+  public List<Patient> findPatientByName(@PathVariable String name) {
     return service.getPatientByName(name);
   }
 
