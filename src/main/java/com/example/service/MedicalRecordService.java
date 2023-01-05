@@ -1,5 +1,6 @@
 package com.example.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,9 +27,26 @@ public class MedicalRecordService {
     return repository.save(medicalRecord);
   }
 
-  public List<MedicalRecord> getMedicalRecords() {
-    return repository.findAll();
+  public MedicalRecordDto getMedicalRecordDto(MedicalRecord medicalRecord){
+    MedicalRecordDto medicalRecordDto = new MedicalRecordDto();
+    medicalRecordDto.setDescription(medicalRecord.getDescription());
+    medicalRecordDto.setSeverity(medicalRecord.getSeverity());
+    medicalRecordDto.setSymptom(medicalRecord.getSymptom());
+    medicalRecordDto.setDiagnosis(medicalRecord.getDiagnosis());
+    medicalRecordDto.setTreatment(medicalRecord.getTreatment());
+    medicalRecordDto.setPatient_id(medicalRecord.getPatient().getId());
+    return medicalRecordDto;
   }
+
+  public List<MedicalRecordDto> getMedicalRecords() {
+    List<MedicalRecord> allRecords = repository.findAll();
+    List<MedicalRecordDto> medicalRecordDtos = new ArrayList<>();
+    for(MedicalRecord medicalrecord: allRecords){
+      medicalRecordDtos.add(getMedicalRecordDto(medicalrecord));
+    }
+    return medicalRecordDtos;
+  }
+  
   public MedicalRecord getMedicalRecordById(int id) {
     return repository.findById(id);//.orElse(null);
   }

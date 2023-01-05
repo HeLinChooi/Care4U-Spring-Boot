@@ -37,7 +37,7 @@ public class MedicalRecordController {
   }
   
   @GetMapping("/medical-records")
-  public List<MedicalRecord> findAllMedicalRecords() {
+  public List<MedicalRecordDto> findAllMedicalRecords() {
     return service.getMedicalRecords();
   }
   
