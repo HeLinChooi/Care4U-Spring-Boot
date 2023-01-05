@@ -1,6 +1,7 @@
 package com.example.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -11,8 +12,11 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.dto.MedicalRecordDto;
 import com.example.exceptions.CustomException;
 import com.example.model.MedicalRecord;
+import com.example.model.Patient;
+import com.example.repository.PatientRepository;
 import com.example.service.MedicalRecordService;
 
 @RestController
@@ -20,9 +24,16 @@ public class MedicalRecordController {
   @Autowired
   private MedicalRecordService service;
 
+  @Autowired
+  PatientRepository patientRepository;
+
   @PostMapping("/medical-record")
-  public MedicalRecord addMedicalRecord(@RequestBody MedicalRecord medicalRecord) {   
-    return service.saveMedicalRecord(medicalRecord);
+  public MedicalRecord addMedicalRecord(@RequestBody MedicalRecordDto medicalRecordDto) {  
+    Optional<Patient> optionalPatient = patientRepository.findById(medicalRecordDto.getPatient_id());
+    if(!optionalPatient.isPresent()){
+      throw new CustomException("Cannot find this patient.");
+    }
+    return service.saveMedicalRecord(medicalRecordDto,optionalPatient.get());
   }
   
   @GetMapping("/medical-records")

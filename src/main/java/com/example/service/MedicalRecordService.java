@@ -5,7 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.dto.MedicalRecordDto;
 import com.example.model.MedicalRecord;
+import com.example.model.Patient;
 import com.example.repository.MedicalRecordRepository;
 
 @Service
@@ -13,9 +15,17 @@ public class MedicalRecordService {
   @Autowired
   private MedicalRecordRepository repository;
 
-  public MedicalRecord saveMedicalRecord(MedicalRecord medicalRecord){
+  public MedicalRecord saveMedicalRecord(MedicalRecordDto medicalRecordDto, Patient patient){
+    MedicalRecord medicalRecord = new MedicalRecord();
+    medicalRecord.setDescription(medicalRecordDto.getDescription());
+    medicalRecord.setSeverity(medicalRecordDto.getSeverity());
+    medicalRecord.setSymptom(medicalRecordDto.getSymptom());
+    medicalRecord.setDiagnosis(medicalRecordDto.getDiagnosis());
+    medicalRecord.setTreatment(medicalRecordDto.getTreatment());
+    medicalRecord.setPatient(patient);
     return repository.save(medicalRecord);
   }
+
   public List<MedicalRecord> getMedicalRecords() {
     return repository.findAll();
   }

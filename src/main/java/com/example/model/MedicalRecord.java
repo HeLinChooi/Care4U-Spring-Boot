@@ -28,6 +28,5 @@ public class MedicalRecord {
   @ManyToOne
   @JoinColumn(name="patient_id")
   Patient patient;
-
-
+  
 }
