@@ -39,8 +39,8 @@ public class MedicalRecordController {
   @GetMapping("/medical-records")
   public List<MedicalRecordDto> findAllMedicalRecords() {
     return service.getMedicalRecords();
-  }
-  
+  } 
+
   @GetMapping("/medical-record-by-id/{id}")
   public <Optional> MedicalRecord findMedicalRecordById(@PathVariable int id){
     if (service.getMedicalRecordById(id) == null) {

@@ -2,6 +2,7 @@ package com.example.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -48,14 +49,16 @@ public class MedicalRecordService {
   }
   
   public MedicalRecord getMedicalRecordById(int id) {
-    return repository.findById(id);//.orElse(null);
+    return repository.findById(id).orElse(null);
   }
+
   public String deleteMedicalRecord(int id) {
     repository.deleteById(id);
     return "Medical Record removed: "+id;
   }
+
   public MedicalRecord updateMedicalRecord(MedicalRecord medicalRecord) {
-    MedicalRecord existingMedicalRecord = repository.findById(medicalRecord.getId());//.orElse(null);
+    MedicalRecord existingMedicalRecord = repository.findById(medicalRecord.getId()).orElse(null);
     existingMedicalRecord.setDescription(medicalRecord.getDescription());
     existingMedicalRecord.setSeverity(medicalRecord.getSeverity());
     existingMedicalRecord.setSymptom(medicalRecord.getSymptom());

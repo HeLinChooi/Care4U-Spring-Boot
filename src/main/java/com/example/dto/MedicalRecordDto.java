@@ -2,7 +2,7 @@ package com.example.dto;
 
 public class MedicalRecordDto {
     //for create it can be optional 
-    //for update we need the id
+    //for update we need the id if we use id
     private Integer id;
     private String description;
     private String severity;
