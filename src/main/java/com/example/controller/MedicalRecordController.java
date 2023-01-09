@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.example.dto.MedicalRecordDto;
 import com.example.exceptions.CustomException;
@@ -20,6 +21,7 @@ import com.example.repository.PatientRepository;
 import com.example.service.MedicalRecordService;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 public class MedicalRecordController {
   @Autowired
   private MedicalRecordService service;
@@ -42,11 +44,18 @@ public class MedicalRecordController {
   } 
 
   @GetMapping("/medical-record-by-id/{id}")
-  public <Optional> MedicalRecord findMedicalRecordById(@PathVariable int id){
+  public MedicalRecord findMedicalRecordById(@PathVariable int id){
     if (service.getMedicalRecordById(id) == null) {
       throw new CustomException("Cannot find this patient medical record.");
     }
     return service.getMedicalRecordById(id);
+  }
+  @GetMapping("/medical-record-by-patient-id/{id}")
+  public List<MedicalRecord> findMedicalRecordByPatientId(@PathVariable int id){
+    if (service.getMedicalRecordsByPatientId(id).isEmpty()) {
+      throw new CustomException("Cannot find this patient.");
+    }
+    return service.getMedicalRecordsByPatientId(id);
   }
 
   @PutMapping("/medical-record")

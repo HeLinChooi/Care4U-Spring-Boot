@@ -102,7 +102,7 @@ public class UserService {
       throw new CustomException("token is not present");
     }
 
-    return new SignInResponseDto("sucess", token.getToken());
+    return new SignInResponseDto("success", token.getToken());
 
     // return response
   }

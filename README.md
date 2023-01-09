@@ -35,6 +35,9 @@ use care4u;
 [Should I learn Gradle or Maven for Spring](https://www.reddit.com/r/java/comments/pj5iu0/should_i_learn_gradle_or_maven_for_spring/)  
 [Spring Boot Security Autoconfiguration](https://www.baeldung.com/spring-boot-security-autoconfiguration)  
 [Java Password Hashing](https://www.baeldung.com/java-password-hashing)
+https://www.youtube.com/playlist?list=PLzXSm2gSfuPJc2sSAmmud6TLpx0H7otyd
+https://www.baeldung.com/jpa-cascade-types
+https://stackoverflow.com/questions/2990799/difference-between-fetchtype-lazy-and-eager-in-java-persistence-api
 
 ## API
 ### Sign Up

@@ -50,6 +50,9 @@ public class MedicalRecordService {
   public MedicalRecord getMedicalRecordById(int id) {
     return repository.findById(id).orElse(null);
   }
+  public List<MedicalRecord> getMedicalRecordsByPatientId(int id) {
+    return repository.findByPatientId(id);
+  }
 
   public String deleteMedicalRecord(int id) {
     repository.deleteById(id);

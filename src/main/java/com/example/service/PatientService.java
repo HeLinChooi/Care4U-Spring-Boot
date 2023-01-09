@@ -49,6 +49,7 @@ public class PatientService {
 
   public Patient updatePatient(Patient patient) {
     Patient existingPatient = repository.findById(patient.getId()).orElse(null);
+    if(existingPatient == null) return null;
     existingPatient.setName(patient.getName());
     existingPatient.setAge(patient.getAge());
     existingPatient.setGender(patient.isGender());
