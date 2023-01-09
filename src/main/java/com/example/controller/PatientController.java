@@ -10,12 +10,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.example.exceptions.CustomException;
 import com.example.model.Patient;
 import com.example.service.PatientService;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 public class PatientController {
   @Autowired
   private PatientService service;

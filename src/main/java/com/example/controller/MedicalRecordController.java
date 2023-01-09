@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.example.dto.MedicalRecordDto;
 import com.example.exceptions.CustomException;
@@ -20,6 +21,7 @@ import com.example.repository.PatientRepository;
 import com.example.service.MedicalRecordService;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 public class MedicalRecordController {
   @Autowired
   private MedicalRecordService service;
