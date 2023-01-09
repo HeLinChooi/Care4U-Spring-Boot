@@ -42,11 +42,18 @@ public class MedicalRecordController {
   } 
 
   @GetMapping("/medical-record-by-id/{id}")
-  public <Optional> MedicalRecord findMedicalRecordById(@PathVariable int id){
+  public MedicalRecord findMedicalRecordById(@PathVariable int id){
     if (service.getMedicalRecordById(id) == null) {
       throw new CustomException("Cannot find this patient medical record.");
     }
     return service.getMedicalRecordById(id);
+  }
+  @GetMapping("/medical-record-by-patient-id/{id}")
+  public List<MedicalRecord> findMedicalRecordByPatientId(@PathVariable int id){
+    if (service.getMedicalRecordsByPatientId(id).isEmpty()) {
+      throw new CustomException("Cannot find this patient.");
+    }
+    return service.getMedicalRecordsByPatientId(id);
   }
 
   @PutMapping("/medical-record")

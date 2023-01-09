@@ -57,6 +57,9 @@ public class PatientController {
 
   @PutMapping("/patient")
   public Patient updatePatient(@RequestBody Patient patient) {
+    if (service.updatePatient(patient) == null) {
+      throw new CustomException("Cannot find this patient.");
+    }
     return service.updatePatient(patient);
   }
 
