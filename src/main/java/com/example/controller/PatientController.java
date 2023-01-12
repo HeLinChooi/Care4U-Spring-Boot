@@ -17,7 +17,7 @@ import com.example.model.Patient;
 import com.example.service.PatientService;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = { "http://localhost:3000", "https://care4u.vercel.app/" })
 public class PatientController {
   @Autowired
   private PatientService service;

@@ -22,7 +22,7 @@ import com.example.repository.PatientRepository;
 import com.example.service.MedicalRecordService;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = { "http://localhost:3000", "https://care4u.vercel.app/" })
 public class MedicalRecordController {
   @Autowired
   private MedicalRecordService service;
